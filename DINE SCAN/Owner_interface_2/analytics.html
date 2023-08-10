@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Software Owner Interface</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+  <div class="animation-container">
+    <img src="dinescan.png" alt="Dine Logo" class="animation-logo">
+  </div>
+  
+  <header class="header">
+    <div class="logo">
+      <img src="dinescan.png" alt="Dine Logo" class="logo-img">
+      <h1>Ruhela Fast Foods (Dhaasu Geeks undertaken)</h1>
+    </div>
+  </header>
+  
+  <div class="main-container">
+    <div class="left-pane">
+      <div class="hamburger-menu">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </div>
+      <nav class="side-menu">
+        <ul>
+          <li><a href="index.html">Orders</a></li>
+          <li><a href="qr.html">QR Generator</a></li>
+          <li><a href="menu-management.html">Menu Management</a></li>
+          <li><a href="billing-management.html">Billing Management</a></li>
+          <li><a href="analytics.html">Analytics</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="right-pane">
+      <h2>Order Analytics</h2>
+      <py-env>
+        - pandas
+        - matplotlib
+        - seaborn
+        - paths:
+            - data.csv
+      </py-env>
+      <div>
+      <py-script>
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+
+        # Load the data from the CSV file
+        data = pd.read_csv('data.csv')
+
+        # Summary statistics
+        summary_stats = data.describe()
+
+        # Visualization 1: Count plot of food item categories with artistic creativity
+        fig1, ax1 = plt.subplots(figsize=(10, 6))
+        sns.countplot(x='category', data=data, palette='pastel', ax=ax1)
+        ax1.set_title('Count of Food Item Categories', fontsize=16)
+        ax1.set_xlabel('Categories', fontsize=12)
+        ax1.set_ylabel('Count', fontsize=12)
+        ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right', fontsize=10)
+        ax1.set_yticklabels(ax1.get_yticklabels(), fontsize=10)
+
+        # Visualization 2: Pie chart of seasonal distribution with artistic creativity
+        fig2, ax2 = plt.subplots(figsize=(6, 6))
+        season_counts = data['season'].value_counts()
+        colors = ['#FF9999', '#66B2B2', '#99FF99', '#FFCC99']  # Artistic color palette
+        ax2.pie(season_counts, labels=season_counts.index, colors=colors, autopct='%1.1f%%', startangle=90)
+        ax2.set_title('Seasonal Distribution', fontsize=16)
+
+        # Visualization 3: Scatter plot of age vs. feedback with artistic creativity
+        fig3, ax3 = plt.subplots(figsize=(10, 6))
+        sns.scatterplot(x='age', y='feedback', data=data, hue='season', palette='viridis', s=100, alpha=0.7, ax=ax3)
+        ax3.set_title('Age vs. Feedback', fontsize=16)
+        ax3.set_xlabel('Age', fontsize=12)
+        ax3.set_ylabel('Feedback', fontsize=12)
+        ax3.set_xticklabels(ax3.get_xticklabels(), fontsize=10)
+        ax3.set_yticklabels(ax3.get_yticklabels(), fontsize=10)
+        ax3.legend(fontsize=10)
+
+        # Visualization 4: Violin plot of category vs. feedback with artistic creativity
+        fig4, ax4 = plt.subplots(figsize=(10, 6))
+        sns.violinplot(x='category', y='feedback', data=data, palette='muted', inner='quartile', ax=ax4)
+        ax4.set_title('Category vs. Feedback', fontsize=16)
+        ax4.set_xlabel('Category', fontsize=12)
+        ax4.set_ylabel('Feedback', fontsize=12)
+        ax4.set_xticklabels(ax4.get_xticklabels(), rotation=45, ha='right', fontsize=10)
+        ax4.set_yticklabels(ax4.get_yticklabels(), fontsize=10)
+
+        # Visualization 5: Bar plot of feedback ratings with artistic creativity
+        fig5, ax5 = plt.subplots(figsize=(8, 6))
+        feedback_counts = data['feedback'].value_counts().sort_index()
+        sns.barplot(x=feedback_counts.index, y=feedback_counts.values, palette='coolwarm', ax=ax5)
+        ax5.set_title('Feedback Ratings', fontsize=16)
+        ax5.set_xlabel('Rating', fontsize=12)
+        ax5.set_ylabel('Count', fontsize=12)
+        ax5.set_xticklabels(ax5.get_xticklabels(), fontsize=10)
+        ax5.set_yticklabels(ax5.get_yticklabels(), fontsize=10)
+
+        # Visualization 6: Pairplot with artistic creativity
+        fig6, ax6 = plt.subplots()
+        sns.pairplot(data, hue='season', palette='husl', ax=ax6)
+        ax6.suptitle('Pairwise Relationships', fontsize=16)
+
+        # Show all the plots
+      </py-script>
+      <div>
+        <py-script>
+            fig2
+        </py-script>
+        </div>
+    <!-- </div>
+    <div class="graph2"> -->
+        <div>
+        <py-script>
+            fig3
+        </py-script>
+        </div>
+        <div>
+        <py-script>
+            fig4
+        </py-script>
+        </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

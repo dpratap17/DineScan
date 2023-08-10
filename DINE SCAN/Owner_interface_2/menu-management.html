@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Software Owner Interface</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style2.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <div class="animation-container">
+    <img src="dinescan.png" alt="Dine Logo" class="animation-logo">
+  </div>
+  
+  <header class="header">
+    <div class="logo">
+      <img src="dinescan.png" alt="Dine Logo" class="logo-img">
+      <h1>Ruhela Fast Foods (Dhaasu Geeks undertaken)</h1>
+    </div>
+  </header>
+  
+  <div class="main-container">
+    <div class="left-pane">
+      <div class="hamburger-menu">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </div>
+      <nav class="side-menu">
+        <ul>
+          <li><a href="index.html">Orders</a></li>
+          <li><a href="qr.html">QR Generator</a></li>
+          <li><a href="menu-management.html">Menu Management</a></li>
+          <li><a href="billing-management.html">Billing Management</a></li>
+          <li><a href="analytics.html">Analytics</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="right-pane">
+       
+        <form id="foodForm">
+            <div class="form-group">
+              <label for="foodName">Food Name:</label>
+              <input type="text" id="foodName" required>
+            </div>
+            <div class="form-group">
+              <label for="foodImage">Image File Name:</label>
+              <input type="text" id="foodImage" required>
+            </div>
+            <div class="form-group">
+              <label for="foodDescription">Description:</label>
+              <textarea id="foodDescription" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="foodCost">Cost:</label>
+              <input type="number" id="foodCost" step="0.01" required>
+            </div>
+            <button type="submit">Add Food Item</button>
+          </form>
+
+          <div class="menu">
+            <h2 align="center">Current Menu</h2>
+            <script>
+              
+              $.getJSON("menushow.php", function (data) {
+                // Loop through the food items and add them to the menu.
+                for (let foodItem of data) {
+                  addFoodItem(foodItem);
+                }
+              });
+      
+              // Function to add a food item to the menu.
+              function addFoodItem(foodItem) {
+                // Create a new <div> element for the food item.
+                const foodItemDiv = document.createElement("div");
+                foodItemDiv.classList.add("food-item");
+      
+                // Add the food item's image to the <div> element.
+                const foodItemImage = document.createElement("img");
+                foodItemImage.src = foodItem.image;
+                foodItemDiv.appendChild(foodItemImage);
+      
+                // Add the food item's name to the <div> element.
+                const foodItemName = document.createElement("h3");
+                foodItemName.textContent = foodItem.name;
+                foodItemDiv.appendChild(foodItemName);
+      
+                // Add the cost of the food item to the <div> element.
+                const foodItemCost = document.createElement("span");
+                foodItemCost.textContent = foodItem.cost;
+                foodItemDiv.appendChild(foodItemCost);
+                // Add the <div> element to the menu.
+                document.querySelector(".menu").appendChild(foodItemDiv);
+              }
+            </script>
+          </div>
+      
+        
+<script src="menuscript.js"></script>
+        
+    </div>
+  </div>
+</body>
+</html>

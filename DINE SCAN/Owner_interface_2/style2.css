@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    padding: 10px;
+  }
+  
+  header img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  .table-number {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .table-number h2 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .food-item {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .food-item img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .food-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .counter button {
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: #007f5f;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .counter span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .order-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #007f5f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

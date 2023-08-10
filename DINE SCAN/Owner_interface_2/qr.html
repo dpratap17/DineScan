@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Software Owner Interface</title>
+<link rel="stylesheet" href="qr.css">
+</head>
+<body>
+  <div class="animation-container">
+    <img src="dinescan.png" alt="Dine Logo" class="animation-logo">
+  </div>
+  
+  <header class="header">
+    <div class="logo">
+      <img src="dinescan.png" alt="Dine Logo" class="logo-img">
+      <h1>Ruhela Fast Foods (Dhaasu Geeks undertaken)</h1>
+    </div>
+  </header>
+  
+  <div class="main-container">
+    <div class="left-pane">
+      <div class="hamburger-menu">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </div>
+      <nav class="side-menu">
+        <ul>
+            <li><a href="index.html">Orders</a></li>
+          <li><a href="qr.html">QR Generator</a></li>
+          <li><a href="menu-management.html">Menu Management</a></li>
+          <li><a href="billing-management.html">Billing Management</a></li>
+          <li><a href="analytics.html">Analytics</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="right-pane">
+        <h1>QR Code Generator</h1>
+        Enter Table Number:<br>
+        <input type="number" id="tableNumber" />
+        <button onclick="generateQRCode()">Generate QR Code</button>
+        <button onclick="printQRCode()">Print QR Code</button>
+        <div id="qrcode"></div>
+        
+        <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+        <script>
+          const qrcode = new QRCode(document.getElementById("qrcode"));
+        
+          function generateQRCode() {
+            const tableNumber = document.getElementById("tableNumber").value;
+            const url = `http://192.168.1.15:80/DINE SCAN/Owner_interface_2/customer_menu.html?tableNo=${tableNumber}`;
+            qrcode.makeCode(url);
+          }
+        
+          function printQRCode() {
+            const tableNumber = document.getElementById("tableNumber").value;
+            const url = `http://192.168.1.15:80/DINE SCAN/Owner_interface_2/customer_menu.html?tableNo=${tableNumber}`;
+            const qrCodeURL = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(url)}&chs=160x160&chld=L|0`;
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`<html><body><img src="${qrCodeURL}"></body></html>`);
+            printWindow.document.close();
+            printWindow.print();
+          }
+        </script>  
+    </div>
+  </div>
+</body>
+</html>
